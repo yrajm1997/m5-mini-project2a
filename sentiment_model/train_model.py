@@ -78,9 +78,9 @@ def run_training() -> None:
                    )
     
     # Calculate the score/error
-    test_loss, test_acc = classifier.evaluate(X_test_pad, y_test)
-    print("Loss:", test_loss)
-    print("Accuracy:", test_acc)
+    #test_loss, test_acc = classifier.evaluate(X_test_pad, y_test)
+    #print("Loss:", test_loss)
+    #print("Accuracy:", test_acc)
 
     
 if __name__ == "__main__":

@@ -15,9 +15,6 @@ from sentiment_model.processing.data_manager import load_model
 
 def test_make_prediction(sample_input_data):
     # Given
-    #for data, labels in sample_input_data:
-    #    data_in = data[0]
-    #    break
     data_in = sample_input_data[0][0].reshape(1, -1)
 
     # When
