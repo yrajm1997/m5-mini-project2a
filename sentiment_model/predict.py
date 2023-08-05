@@ -4,6 +4,7 @@ sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 from typing import Union
 import pandas as pd
+import tensorflow as tf
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 from sentiment_model import __version__ as _version

@@ -13,7 +13,7 @@ from bs4 import BeautifulSoup
 import nltk
 from nltk.tokenize import word_tokenize
 import tensorflow as tf
-from tensorflow.keras.models import Model, load_model
+from tensorflow.keras import models
 from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
 from tensorflow.keras.preprocessing.text import Tokenizer, tokenizer_from_json
 from sentiment_model.config.core import config
@@ -133,11 +133,11 @@ def callbacks_and_save_model():
     return callback_list
 
 
-def load_model(*, file_name: str) -> Model:
+def load_model(*, file_name: str) -> models.Model:
     """Load a persisted model."""
 
     file_path = TRAINED_MODEL_DIR / file_name
-    trained_model = load_model(filepath = file_path)
+    trained_model = models.load_model(filepath = file_path)
     return trained_model
 
 
