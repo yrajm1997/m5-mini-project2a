@@ -6,7 +6,7 @@ import pytest
 import warnings
 warnings.filterwarnings("ignore")
 from sklearn.model_selection import train_test_split
-from keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 from sentiment_model.config.core import config
 from sentiment_model import __version__ as _version

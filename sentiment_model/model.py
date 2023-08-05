@@ -3,7 +3,8 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 import tensorflow as tf
-from tensorflow import keras
+from tensorflow.keras.layers import Input, Embedding, LSTM, Dense
+from tensorflow.keras.models import Model
 
 from sentiment_model.config.core import config
 
@@ -11,15 +12,15 @@ from sentiment_model.config.core import config
 def create_model(max_review_length, top_words, embedding_vector_length, mask_zero, lstm_layer_dim, activation, dense_layer_dim, optimizer, loss, metrics):
 
     # Input layer
-    inputs = keras.layers.Input(shape=(max_review_length,))
+    inputs = Input(shape=(max_review_length,))
     # Embedding layer
-    emb = keras.layers.Embedding(input_dim = top_words, output_dim = embedding_vector_length, mask_zero= mask_zero)(inputs)
+    emb = Embedding(input_dim = top_words, output_dim = embedding_vector_length, mask_zero= mask_zero)(inputs)
     # LSTM layer
-    lstm = keras.layers.LSTM(lstm_layer_dim)(emb)
+    lstm = LSTM(lstm_layer_dim)(emb)
     # Output layer
-    outputs = keras.layers.Dense(dense_layer_dim, activation=activation)(lstm)
+    outputs = Dense(dense_layer_dim, activation=activation)(lstm)
     # Define the model
-    model = keras.Model(inputs=inputs, outputs=outputs)
+    model = Model(inputs=inputs, outputs=outputs)
     model.compile(loss=loss, optimizer=optimizer, metrics=metrics)
 
     return model

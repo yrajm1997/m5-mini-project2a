@@ -4,8 +4,8 @@ sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from tensorflow import keras
-from keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+
 from sentiment_model.config.core import config
 from sentiment_model.model import classifier
 from sentiment_model.processing.data_manager import load_dataset, save_tokenizer, callbacks_and_save_model

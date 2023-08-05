@@ -13,8 +13,9 @@ from bs4 import BeautifulSoup
 import nltk
 from nltk.tokenize import word_tokenize
 import tensorflow as tf
-from tensorflow import keras
-from keras.preprocessing.text import Tokenizer, tokenizer_from_json
+from tensorflow.keras.models import Model, load_model
+from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
+from tensorflow.keras.preprocessing.text import Tokenizer, tokenizer_from_json
 from sentiment_model.config.core import config
 from sentiment_model import __version__ as _version
 from sentiment_model.config.core import DATASET_DIR, TRAINED_MODEL_DIR, TRAINED_TOKENIZER_DIR, config
@@ -122,21 +123,21 @@ def callbacks_and_save_model():
     remove_old_model(files_to_keep = [save_file_name])
 
     # Default callback
-    callback_list.append(keras.callbacks.ModelCheckpoint(filepath = str(save_path),
+    callback_list.append(ModelCheckpoint(filepath = str(save_path),
                                                          save_best_only = config.model_config.save_best_only,
                                                          monitor = config.model_config.monitor))
 
     if config.model_config.earlystop > 0:
-        callback_list.append(keras.callbacks.EarlyStopping(patience = config.model_config.earlystop))
+        callback_list.append(EarlyStopping(patience = config.model_config.earlystop))
 
     return callback_list
 
 
-def load_model(*, file_name: str) -> keras.models.Model:
+def load_model(*, file_name: str) -> Model:
     """Load a persisted model."""
 
     file_path = TRAINED_MODEL_DIR / file_name
-    trained_model = keras.models.load_model(filepath = file_path)
+    trained_model = load_model(filepath = file_path)
     return trained_model
 
 

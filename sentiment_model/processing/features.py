@@ -1,5 +1,4 @@
-from tensorflow import keras
-from keras.preprocessing.text import Tokenizer
+from tensorflow.keras.preprocessing.text import Tokenizer
 from sentiment_model.config.core import config
 
 # Performing the data augmentation as series of transformations
