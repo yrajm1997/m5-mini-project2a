@@ -20,4 +20,4 @@ jobs:
       - name: Run Docker Container
         env:
           DOCKER_USER: ${{ secrets.DOCKER_USER_NAME }}
-        run: sudo docker run -d -p 8001:8001 --name sentiment-fastapi-container $DOCKER_USER/sentiment-fastapi
+        run: sudo docker run -itd -p 8001:8001 --name sentiment-fastapi-container $DOCKER_USER/sentiment-fastapi:latest
