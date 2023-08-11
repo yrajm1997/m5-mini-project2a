@@ -33,9 +33,10 @@ def get_sentiment(dataframe: pd.DataFrame, sentiment_var: str, score_var: str):
 
 
 def strip_html(text: str):
-    # BeautifulSoup is a useful library for extracting data from HTML and XML documents
-    soup = BeautifulSoup(text, "html.parser")
-    return soup.get_text()
+    text = re.sub('<.*?>', ' ', text)
+    text = re.sub('\s+\s', ' ', text)
+    text = text.strip()
+    return text
 
 
 def remove_punctuations(text: str):
