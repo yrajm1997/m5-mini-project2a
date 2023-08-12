@@ -3,8 +3,8 @@ include *.md
 include *.pkl
 recursive-include ./sentiment_model *
 
-include sentiment_model/trained_models/*.pkl
-include sentiment_model/trained_tokenizer/*.json
+recursive-include sentiment_model/trained_models *
+recursive-include sentiment_model/trained_tokenizer *
 include sentiment_model/VERSION
 include sentiment_model/config.yml
 
